@@ -12,5 +12,5 @@ print(r1.area())
 
 
 class Circle:
-    pass
-    pass
+    def __init__(self, rad: int):
+        self.rad = rad
