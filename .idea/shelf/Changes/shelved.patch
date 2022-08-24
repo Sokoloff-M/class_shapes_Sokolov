@@ -1,0 +1,202 @@
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1661315295807)
++++ b/.idea/.gitignore	(date 1661315295807)
+@@ -0,0 +1,3 @@
++# Default ignored files
++/shelf/
++/workspace.xml
+Index: .idea/dictionaries/max.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dictionaries/max.xml b/.idea/dictionaries/max.xml
+new file mode 100644
+--- /dev/null	(date 1661317053205)
++++ b/.idea/dictionaries/max.xml	(date 1661317053205)
+@@ -0,0 +1,3 @@
++<component name="ProjectDictionaryState">
++  <dictionary name="max" />
++</component>
+\ No newline at end of file
+Index: class_figure.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>class Rectangle:\r\n    def __init__(self, height: int, widght: int, sqare: int):\r\n        self.widght = widght\r\n        self.height = height\r\n        self.sqare = sqare\r\n\r\n\r\nclass Circle:\r\n    pass
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/class_figure.py b/class_figure.py
+--- a/class_figure.py	(revision 1630400f8e51b1ace23602e4b8901ee59e924ded)
++++ b/class_figure.py	(date 1661318734675)
+@@ -1,9 +1,33 @@
++import math
++
+ class Rectangle:
+-    def __init__(self, height: int, widght: int, sqare: int):
+-        self.widght = widght
++    def __init__(self, height: int, width: int):
++        self.width = width
+         self.height = height
+-        self.sqare = sqare
++        # self.area = self.width * self.height
++
++    def area(self):
++        return self.width * self.height
++
++
++r1 = Rectangle(15, 43)
++# print(r1.area)
++print(r1.area())
+ 
+ 
+ class Circle:
+-    pass
+\ No newline at end of file
++    def __init__(self, radius: int,):
++        self.radius = radius
++
++    def area(self):
++        return math.pi * (self.radius ** 2)
++
++    def len_Circle(self):
++        return 2 * math.pi * self.radius
++
++r2 = Circle(16)
++print(r2.area())
++print()
++print(r2.len_Circle())
++
++
+Index: special_method_class.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>class Point:\r\n    def __init__(self, x: int, y: int):\r\n        self.y = y\r\n        self.x = x\r\n\r\n    def __repr__(self):\r\n        return f'<Point: x={self.x}, y={self.y}>'\r\n\r\n    def __str__(self):\r\n        return f'({self.x}, {self.y})'\r\n\r\n    def __eq__(self, other):\r\n        #Проверяет на равенство объекты self и other.\r\n\r\n        \"\"\"Вызывается при проверке на равенство\"\"\"\r\n        if isinstance(other, Point):\r\n            if self.x == other.x and self.y == other.y:\r\n                return True\r\n            else:\r\n                return False\r\n        else:\r\n            raise TypeError('other object is not Point')\r\n\r\n    def __lt__(self, other):\r\n\r\n        if isinstance(other, Point):\r\n            if self.x < other.x and self.y < other.y:\r\n                return True\r\n            else:\r\n                return False\r\n\r\n    def __gt__(self, other):\r\n        # Проверяет больше self чем other.\r\n\r\n        \"\"\"Вызывается при проверке на равенство\"\"\"\r\n        if isinstance(other, Point):\r\n            if self.x > other.x and self.y > other.y:\r\n                return True\r\n            else:\r\n                return False\r\n\r\n    def __sub__(self, other):\r\n        \"\"\"Вычисляет  расстояние мкжду двумя точками\"\"\"\r\n        if isinstance(other, Point):\r\n            return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\r\n        else:\r\n            raise TypeError('other object is not Point')\r\n\r\n\r\nclass Line:\r\n\r\n    def __init__(self, start: Point, end: Point):\r\n        self.start = start\r\n        self.end = end\r\n        self.lenght = self.end -self.start\r\n\r\n    def __len__(self):\r\n        return self.end - self.start\r\n\r\n    def __str__(self):\r\n        return f'<Line: start={self.start!s}, end={self.end!s}, len={self.lenght}>'\r\n\r\n\r\np0 = Point(0, 0)\r\nprint(p0, end='\\n\\n')\r\nprint(repr(p0), end='\\n\\n')\r\nprint(f'{p0!r}\\n{p0!s}', end='\\n\\n')\r\n\r\np1 = Point(1, 1)\r\n\r\nprint(f'{p0 < Point(1, 1) = }')\r\nprint(f'{p0 > Point(1, -1) = }')\r\nprint(f'{p0 == Point(0, 1) = }')\r\n\r\nl1 = Line(start=p0, end=Point(2, 2))\r\nprint(l1)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/special_method_class.py b/special_method_class.py
+--- a/special_method_class.py	(revision 1630400f8e51b1ace23602e4b8901ee59e924ded)
++++ b/special_method_class.py	(date 1661316199604)
+@@ -10,7 +10,7 @@
+         return f'({self.x}, {self.y})'
+ 
+     def __eq__(self, other):
+-        #Проверяет на равенство объекты self и other.
++        # Проверяет на равенство объекты self и other.
+ 
+         """Вызывается при проверке на равенство"""
+         if isinstance(other, Point):
+@@ -52,7 +52,7 @@
+     def __init__(self, start: Point, end: Point):
+         self.start = start
+         self.end = end
+-        self.lenght = self.end -self.start
++        self.lenght = self.end - self.start
+ 
+     def __len__(self):
+         return self.end - self.start
+Index: .idea/inspectionProfiles/Project_Default.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/inspectionProfiles/Project_Default.xml b/.idea/inspectionProfiles/Project_Default.xml
+new file mode 100644
+--- /dev/null	(date 1661315295606)
++++ b/.idea/inspectionProfiles/Project_Default.xml	(date 1661315295606)
+@@ -0,0 +1,19 @@
++<component name="InspectionProjectProfileManager">
++  <profile version="1.0">
++    <option name="myName" value="Project Default" />
++    <inspection_tool class="PyBroadExceptionInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
++    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
++      <option name="ignoredErrors">
++        <list>
++          <option value="E501" />
++          <option value="E722" />
++        </list>
++      </option>
++    </inspection_tool>
++    <inspection_tool class="SpellCheckingInspection" enabled="false" level="TYPO" enabled_by_default="false">
++      <option name="processCode" value="true" />
++      <option name="processLiterals" value="true" />
++      <option name="processComments" value="true" />
++    </inspection_tool>
++  </profile>
++</component>
+\ No newline at end of file
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+--- /dev/null	(date 1661315295653)
++++ b/.idea/modules.xml	(date 1661315295653)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/class_shapes_Sokolov.iml" filepath="$PROJECT_DIR$/.idea/class_shapes_Sokolov.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1661315295669)
++++ b/.idea/misc.xml	(date 1661315295669)
+@@ -0,0 +1,4 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.9" project-jdk-type="Python SDK" />
++</project>
+\ No newline at end of file
+Index: .idea/inspectionProfiles/profiles_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+new file mode 100644
+--- /dev/null	(date 1661315295669)
++++ b/.idea/inspectionProfiles/profiles_settings.xml	(date 1661315295669)
+@@ -0,0 +1,6 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="USE_PROJECT_PROFILE" value="false" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1661315295691)
++++ b/.idea/vcs.xml	(date 1661315295691)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
